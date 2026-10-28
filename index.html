@@ -15,7 +15,7 @@
     html, body {
       width: 100%;
       height: 100vh;
-      overflow: hidden; /* Blokada scrolla na pełnym ekranie */
+      overflow: hidden;
     }
 
     body {
@@ -63,18 +63,20 @@
       border: 1px solid rgba(48, 54, 61, 0.8);
       border-radius: 16px;
       padding: 25px 20px;
-      max-width: 540px;
+      max-width: 520px;
       width: 100%;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(88, 166, 255, 0.05);
       text-align: center;
     }
 
-    /* Kontener logo */
+    /* Kontener dla logo utrzymujący stałą wysokość i pełną responsywność */
     .ascii-container {
       width: 100%;
+      height: 95px;
       margin-bottom: 15px;
       display: flex;
       justify-content: center;
+      align-items: center;
       overflow: hidden;
     }
 
@@ -83,21 +85,22 @@
       display: inline-block;
     }
 
-    /* W pełni responsywne logo dopasowujące się do szerokości ekranu (clamp) */
+    /* Logo ASCII z dynamicznym skalowaniem blokowym zapobiegającym rozjeżdżaniu na Androidzie */
     .ascii-logo {
       font-family: "Courier New", Courier, monospace, monospace;
       font-weight: bold;
       white-space: pre;
-      /* Skaluje się płynnie od małych ekranów (np. S20) do desktopu */
-      font-size: clamp(4.2px, 1.35vw, 7px);
-      line-height: 1.05;
+      font-size: 7px;
+      line-height: 1.02;
       user-select: none;
+      transform-origin: center;
+      transform: scale(var(--logo-scale, 1));
       animation: neonWave 2.5s ease-in-out infinite;
       transition: transform 0.2s ease;
     }
 
     .logo-link:hover .ascii-logo {
-      transform: scale(1.02);
+      transform: scale(calc(var(--logo-scale, 1) * 1.03));
     }
 
     @keyframes neonWave {
@@ -118,10 +121,10 @@
     /* Podtytuł */
     p.subtitle {
       color: #8b949e;
-      font-size: clamp(0.85rem, 2.5vw, 1rem);
+      font-size: 0.95rem;
       margin-bottom: 15px;
       letter-spacing: 1px;
-      white-space: nowrap; /* Zapobiega łamaniu napisu na małych ekranach */
+      white-space: nowrap;
     }
 
     hr {
@@ -130,14 +133,14 @@
       margin: 15px 0;
     }
 
-    /* Nawigacja / Linki na dole – zawsze w jednej linii */
+    /* Nawigacja / Linki na dole w jednym, bezpiecznym wierszu */
     .links-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 12px;
-      flex-wrap: nowrap; /* Wymuszenie jednego wiersza */
-      font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+      gap: 8px;
+      flex-wrap: nowrap;
+      font-size: clamp(0.7rem, 2.1vw, 0.95rem);
     }
 
     .links-container a {
@@ -170,10 +173,10 @@
 
   <div class="card">
     
-    <!-- Kontener logo z linkiem -->
+    <!-- Kontener logo z linkiem do organizacji -->
     <div class="ascii-container">
-      <a href="https://github.com/spazmatic-inc" class="logo-link" title="Spazmatic Inc. Home">
-        <div class="ascii-logo">
+      <a href="https://github.com/spazmatic-inc" class="logo-link" title="Spazmatic Inc. HQ">
+        <div class="ascii-logo" id="logo">
 ██▀█ ██▀█ ██▀█ ██▀█ ██▀█▀█ ██▀█ ▀▀██▀▀ ▀██▀ ██▀█      ▀██▀ ██▀▄ ██▀█   
 ██ █ ██ █ ██ █ ██ █ ██ █ █ ██ █   ██    ██  ██ █       ██  ██ █ ██ █   
 ██ █ ██ █ ██ █ ██ █ ██ █ █ ██ █   ██    ██  ██ █       ██  ██ █ ██ █   
@@ -194,7 +197,7 @@
 
     <hr>
 
-    <!-- Wycentrowane linki w jednym wierszu -->
+    <!-- Poprawione linki w stopce -->
     <div class="links-container">
       <a href="https://spazma.net" target="_blank" rel="noopener">spazma.net</a>
       <span class="separator">|</span>
@@ -204,10 +207,24 @@
   </div>
 
   <script>
-    // Pula emotek
+    // Skrypt precyzyjnie dopasowujący skalę logo na urządzeniach mobilnych
+    function adjustLogoScale() {
+      const container = document.querySelector('.ascii-container');
+      const logo = document.getElementById('logo');
+      const baseWidth = 430;
+      const containerWidth = container.clientWidth;
+      
+      let scale = containerWidth / baseWidth;
+      if (scale > 1) scale = 1;
+      
+      logo.style.setProperty('--logo-scale', scale);
+    }
+
+    window.addEventListener('resize', adjustLogoScale);
+    window.addEventListener('DOMContentLoaded', adjustLogoScale);
+
+    // Losowanie emotki z puli
     const emojis = ['👶', '🤓', '🙃', '🤔', '🤯', '🙄', '😁', '😱', '✌️', '😄'];
-    
-    // Losowanie emotki przy odświeżeniu
     const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
     document.getElementById('random-emoji').textContent = randomEmoji;
   </script>
