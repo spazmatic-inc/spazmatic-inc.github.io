@@ -69,15 +69,15 @@
       text-align: center;
     }
 
-    /* Kontener dla logo utrzymujący pełną responsywność */
+    /* Kontener dla logo */
     .ascii-container {
       width: 100%;
       margin-bottom: 15px;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow-x: auto; /* Zabezpieczenie przed ucięciem na mikro-ekranach */
       padding: 5px 0;
+      overflow-x: auto; /* Zabezpieczenie przed ucięciem na mikro-ekranach */
     }
 
     .logo-link {
@@ -85,14 +85,11 @@
       display: inline-block;
     }
 
-    /* Logo ASCII zoptymalizowane pod mobile */
+    /* Wspólny styl animacji neonu */
     .ascii-logo {
       font-family: monospace, monospace;
       font-weight: bold;
       white-space: pre;
-      /* Użycie jednostek vw z ograniczeniami zapewnia idealne skalowanie na każdym ekranie */
-      font-size: clamp(4px, 1.8vw, 7.5px); 
-      line-height: 1;
       user-select: none;
       animation: neonWave 2.5s ease-in-out infinite;
       transition: transform 0.2s ease;
@@ -100,6 +97,29 @@
 
     .logo-link:hover .ascii-logo {
       transform: scale(1.03);
+    }
+
+    /* --- WERSJA DESKTOPOWA --- */
+    .desktop-logo {
+      font-size: 7px;
+      line-height: 1.02;
+    }
+
+    /* --- WERSJA MOBILNA --- */
+    .mobile-logo {
+      font-size: 5px; /* Dopasowana wielkość dla nowego, krótszego loga */
+      line-height: 1.1;
+      display: none; /* Ukryte domyślnie na dużych ekranach */
+    }
+
+    /* Przełączanie widoczności logo poniżej szerokości 600px */
+    @media (max-width: 600px) {
+      .desktop-logo {
+        display: none !important;
+      }
+      .mobile-logo {
+        display: block !important;
+      }
     }
 
     @keyframes neonWave {
@@ -132,7 +152,7 @@
       margin: 15px 0;
     }
 
-    /* Nawigacja / Linki na dole w jednym, bezpiecznym wierszu */
+    /* Nawigacja / Linki na dole */
     .links-container {
       display: flex;
       justify-content: center;
@@ -175,7 +195,9 @@
     <!-- Kontener logo z linkiem do organizacji -->
     <div class="ascii-container">
       <a href="https://github.com/spazmatic-inc" class="logo-link" title="Spazmatic Inc. HQ">
-        <div class="ascii-logo" id="logo">██▀█ ██▀█ ██▀█ ██▀█ ██▀█▀█ ██▀█ ▀▀██▀▀ ▀██▀ ██▀█      ▀██▀ ██▀▄ ██▀█   
+        
+        <!-- WERSJA DLA KOMPUTERÓW -->
+        <div class="ascii-logo desktop-logo">██▀█ ██▀█ ██▀█ ██▀█ ██▀█▀█ ██▀█ ▀▀██▀▀ ▀██▀ ██▀█      ▀██▀ ██▀▄ ██▀█   
 ██ █ ██ █ ██ █ ██ █ ██ █ █ ██ █   ██    ██  ██ █       ██  ██ █ ██ █   
 ██ █ ██ █ ██ █ ██ █ ██ █ █ ██ █   ██    ██  ██ █       ██  ██ █ ██ █   
 ██ ▀ ██ █ ██ █    █ ██ █ █ ██ █   ██    ██  ██         ██  ██ █ ██     
@@ -187,6 +209,13 @@
 ██ █ ██   ██ █ ██ █ ██ █ █ ██ █   ██    ██  ██ █       ██  ██ █ ██ █   
 ██ █ ██   ██ █ ██ █ ██ █ █ ██ █   ██    ██  ██ █       ██  ██ █ ██ █   
 ██▄█ ██   ██ █ ██▄█ ██ █ █ ██ █   ██   ▄██▄ ██▄█      ▄██▄ ██ █ ██▄█ ██</div>
+
+        <!-- WERSJA DLA TELEFONÓW (nowe, kompaktowe logo) -->
+        <div class="ascii-logo mobile-logo">  
+  █████ █████▄ ▄████▄ ██████ ██▄  ▄██ ▄████▄ ██████ ██ ▄█████    ██ ███  ██ ▄█████   
+  ▀▀▄▄ ██▄▄█▀ ██▄▄██  ▄▄▀▀  ██ ▀▀ ██ ██▄▄██   ██   ██ ██        ██ ██ ▀▄██ ██      
+█████▀ ██    ██  ██ ██████ ██    ██ ██  ██   ██   ██ ▀█████    ██ ██   ██ ▀█████ ▄</div>
+
       </a>
     </div>
 
@@ -194,7 +223,7 @@
 
     <hr>
 
-    <!-- Poprawione linki w stopce -->
+    <!-- Linki w stopce -->
     <div class="links-container">
       <a href="https://spazma.net" target="_blank" rel="noopener">spazma.net</a>
       <span class="separator">|</span>
