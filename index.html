@@ -77,6 +77,12 @@
       overflow: hidden;
     }
 
+    /* Link w logo */
+    .logo-link {
+      text-decoration: none;
+      display: inline-block;
+    }
+
     /* Wysoce nasycone, neonowe logo bez scrollbara */
     .ascii-logo {
       font-family: "Courier New", Courier, monospace, monospace;
@@ -86,6 +92,11 @@
       line-height: 1.05;
       user-select: none;
       animation: neonWave 2.5s ease-in-out infinite;
+      transition: transform 0.2s ease;
+    }
+
+    .logo-link:hover .ascii-logo {
+      transform: scale(1.02);
     }
 
     @keyframes neonWave {
@@ -166,9 +177,10 @@
 
   <div class="card">
     
-    <!-- Kontener logo bez paska przewijania -->
+    <!-- Kontener logo z linkiem przekierowującym do strony organizacji -->
     <div class="ascii-container">
-      <div class="ascii-logo">
+      <a href="https://github.com/spazmatic-inc" class="logo-link" title="Spazmatic Inc. Home">
+        <div class="ascii-logo">
 ██▀█ ██▀█ ██▀█ ██▀█ ██▀█▀█ ██▀█ ▀▀██▀▀ ▀██▀ ██▀█      ▀██▀ ██▀▄ ██▀█   
 ██ █ ██ █ ██ █ ██ █ ██ █ █ ██ █   ██    ██  ██ █       ██  ██ █ ██ █   
 ██ █ ██ █ ██ █ ██ █ ██ █ █ ██ █   ██    ██  ██ █       ██  ██ █ ██ █   
@@ -181,7 +193,8 @@
 ██ █ ██   ██ █ ██ █ ██ █ █ ██ █   ██    ██  ██ █       ██  ██ █ ██ █   
 ██ █ ██   ██ █ ██ █ ██ █ █ ██ █   ██    ██  ██ █       ██  ██ █ ██ █   
 ██▄█ ██   ██ █ ██▄█ ██ █ █ ██ █   ██   ▄██▄ ██▄█      ▄██▄ ██ █ ██▄█ ██
-      </div>
+        </div>
+      </a>
     </div>
 
     <h1></h1>
