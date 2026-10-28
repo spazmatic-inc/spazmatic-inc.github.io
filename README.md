@@ -1,2 +1,2 @@
-# spazmatic-inc.github.io
-official page
+# spazmatic-inc.github.io 
+for Github Pages
