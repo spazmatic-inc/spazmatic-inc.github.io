@@ -15,7 +15,7 @@
     html, body {
       width: 100%;
       height: 100vh;
-      overflow: hidden; /* Całkowite blokowanie scrolla na pełnym ekranie */
+      overflow: hidden; /* Blokada scrolla na pełnym ekranie */
     }
 
     body {
@@ -25,6 +25,7 @@
       justify-content: center;
       align-items: center;
       position: relative;
+      padding: 10px;
     }
 
     /* Pływający, animowany gradient w tle */
@@ -54,41 +55,41 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Główna karta / Ramka z efektem szkła (glassmorphism) */
+    /* Główna karta z efektem szkła */
     .card {
       background: rgba(22, 27, 34, 0.85);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(48, 54, 61, 0.8);
       border-radius: 16px;
-      padding: 30px 25px;
-      max-width: 520px;
-      width: 90%;
+      padding: 25px 20px;
+      max-width: 540px;
+      width: 100%;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(88, 166, 255, 0.05);
       text-align: center;
     }
 
-    /* Kontener dla logo - bez scrolla, idealnie wycentrowany */
+    /* Kontener logo */
     .ascii-container {
       width: 100%;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       display: flex;
       justify-content: center;
       overflow: hidden;
     }
 
-    /* Link w logo */
     .logo-link {
       text-decoration: none;
       display: inline-block;
     }
 
-    /* Wysoce nasycone, neonowe logo bez scrollbara */
+    /* W pełni responsywne logo dopasowujące się do szerokości ekranu (clamp) */
     .ascii-logo {
       font-family: "Courier New", Courier, monospace, monospace;
       font-weight: bold;
       white-space: pre;
-      font-size: 6.8px;
+      /* Skaluje się płynnie od małych ekranów (np. S20) do desktopu */
+      font-size: clamp(4.2px, 1.35vw, 7px);
       line-height: 1.05;
       user-select: none;
       animation: neonWave 2.5s ease-in-out infinite;
@@ -114,51 +115,43 @@
       }
     }
 
-    /* Nagłówek i opisy */
-    h1 {
-      color: #f0f6fc;
-      font-size: 1.7rem;
-      letter-spacing: 3px;
-      margin-bottom: 10px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-
+    /* Podtytuł */
     p.subtitle {
       color: #8b949e;
-      font-size: 1rem;
-      margin-bottom: 20px;
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+      margin-bottom: 15px;
       letter-spacing: 1px;
+      white-space: nowrap; /* Zapobiega łamaniu napisu na małych ekranach */
     }
 
     hr {
       border: none;
       border-top: 1px solid #30363d;
-      margin: 20px 0;
+      margin: 15px 0;
     }
 
-    /* Nawigacja / Linki na dole z hoverami */
+    /* Nawigacja / Linki na dole – zawsze w jednej linii */
     .links-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      font-size: 1.1rem;
+      gap: 12px;
+      flex-wrap: nowrap; /* Wymuszenie jednego wiersza */
+      font-size: clamp(0.85rem, 2.5vw, 1.05rem);
     }
 
     .links-container a {
       color: #8ab4f8;
       text-decoration: none;
       font-weight: 500;
-      position: relative;
-      padding: 6px 12px;
+      padding: 4px 8px;
       border-radius: 6px;
       background: rgba(88, 166, 255, 0.03);
       border: 1px solid rgba(88, 166, 255, 0.1);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      white-space: nowrap;
     }
 
-    /* Efekt po najechaniu na link */
     .links-container a:hover {
       color: #ffffff;
       background: rgba(88, 166, 255, 0.15);
@@ -177,9 +170,9 @@
 
   <div class="card">
     
-    <!-- Kontener logo z linkiem przekierowującym do strony organizacji -->
+    <!-- Kontener logo z linkiem -->
     <div class="ascii-container">
-      <a href="https://github.com/spazmatic-inc" class="logo-link" title="Spazmatic Inc. Home">
+      <a href="https://spazmatic-inc.github.io" class="logo-link" title="Spazmatic Inc. Home">
         <div class="ascii-logo">
 ██▀█ ██▀█ ██▀█ ██▀█ ██▀█▀█ ██▀█ ▀▀██▀▀ ▀██▀ ██▀█      ▀██▀ ██▀▄ ██▀█   
 ██ █ ██ █ ██ █ ██ █ ██ █ █ ██ █   ██    ██  ██ █       ██  ██ █ ██ █   
@@ -197,16 +190,15 @@
       </a>
     </div>
 
-    <h1></h1>
     <p class="subtitle">Digital Innovations <span id="random-emoji">😄</span></p>
 
     <hr>
 
-    <!-- Wycentrowane linki -->
+    <!-- Wycentrowane linki w jednym wierszu -->
     <div class="links-container">
       <a href="https://spazma.net" target="_blank" rel="noopener">spazma.net</a>
       <span class="separator">|</span>
-      <a href="https://spazma.github.io" target="_blank" rel="noopener">spazma.github.io</a>
+      <a href="https://spazmatic-inc.github.io" target="_blank" rel="noopener">spazmatic-inc.github.io</a>
     </div>
 
   </div>
